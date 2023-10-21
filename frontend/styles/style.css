@@ -1,0 +1,32 @@
+:root {
+    --main-color:#0077b6;
+    --second-color:#284B63;
+    --main-text-color:white;
+    --header-color:#1d2d44;
+    --element-color:#153243;
+}
+
+body {
+    margin:0;
+    background-color: var(--main-color);
+}
+
+header {
+    background-color: var(--header-color);
+    color:var(--main-text-color);
+    position: sticky;
+    top:0;
+    z-index: 10;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    gap:30px;
+    align-items: center;
+    padding:10px;
+}
+
+a {
+    color:var(--main-text-color);
+}

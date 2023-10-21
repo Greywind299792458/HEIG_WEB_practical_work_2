@@ -1,0 +1,11 @@
+section {
+    text-align: center;
+    height: 50vh;
+}
+
+#actions {
+    background-image: url("/assets/stairs.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    opacity: 0.7;
+}
