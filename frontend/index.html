@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Starway Extravaganza</title>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
         <link rel="stylesheet" href="styles/index.css">
         <link rel="stylesheet" href="styles/style.css">
         <script src="scripts/script.js"></script>
@@ -11,7 +12,7 @@
     <body>
         <header>
             <nav>
-                <img height="90" src="assets/logo.png" alt="Stairs Extravaganza">
+                <p>Stairway Extravaganza</p>
                 <a>Liste</a>
                 <a>Carte</a>
                 <a>Statistiques</a>
@@ -20,7 +21,8 @@
             </nav>
         </header>
         <main>
-            <section>
+            <section class="center">
+                <img height="200" src="assets/app_logo.png">
                 <h1>Vous comptez les marches quand vous empruntez un escalier ?</h1>
                 <h2>Vous détestez les escaliers avec un nombre de marches impaires ?</h2>
                 <h3>Alors vous êtes au bon endroit</h3>
@@ -31,12 +33,22 @@
                 <h4>Vous avez trouvé un escalier ? Ou encore mieux, vous vous êtes vautrés dans un escalier car vous avez la coordination d'un bébé gnoux ? Dites le nous !</h4>
             </section>
             <section id="actions">
-                <h4>Rejoignez le mouvement !</h4>
-                <button>Ajouter un escalier</button>
-                <button>Reporter un accident</button>
+                <div class="btn-action">
+                    <img height="60" src="assets/stairs_icon.png">
+                    Ajouter un escalier
+                </div>
+                <div class="btn-action">
+                    <img height="60" src="assets/accident_icon.png">
+                    Reporter un accident
+                </div>
             </section>
-            <section></section>
+            <section id="other">
+                
+            </section>
         </main>
     </body>
-    <footer>Ce site a été créé avec minutie par un Asperger qui adore compter les trucs et surtout les marches des escaliers. Qui aurait pensé que cette obsession deviendrait utile un jour pour un projet de WEB?</footer>
+    <footer class="center">
+        Ce site a été créé avec minutie par un Asperger qui adore compter les trucs et surtout les marches des escaliers. 
+        Qui aurait pensé que cette obsession deviendrait utile un jour pour un projet de WEB?
+    </footer>
 </html>
