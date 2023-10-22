@@ -1,0 +1,29 @@
+body {
+    background-image: url("../assets/stairs.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+#form-section {
+    height: 130vh;
+    width: 70vw;
+    margin:30px auto 30px auto;
+    background-color: white;
+    color:black;
+    text-align: center;
+    padding:20px;
+}
+
+form {
+    margin-top:100px;
+    text-align: center;
+}
+
+form input {
+    height: 30px;
+    width: 30%;
+}
+
+form #btn-send {
+    width: 15%;
+}

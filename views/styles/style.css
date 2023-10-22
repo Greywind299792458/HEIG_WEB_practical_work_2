@@ -57,6 +57,14 @@ nav a:first-child {
     text-align: center;
 }
 
-a, .btn-action { 
+a, .btn { 
     cursor: pointer; 
+}
+
+.btn {
+    background-color: var(--element-color);
+    border-radius: 5px;
+    border: none;
+    font-size: 1.2em;
+    color:white;
 }

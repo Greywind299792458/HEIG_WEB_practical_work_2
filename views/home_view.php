@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Starway Extravaganza</title>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
-        <link rel="stylesheet" href="views/styles/index.css">
+        <link rel="stylesheet" href="views/styles/home.css">
         <link rel="stylesheet" href="views/styles/style.css">
     </head>
     <body>
@@ -32,17 +32,14 @@
                 <h4>Vous avez trouvé un escalier ? Ou encore mieux, vous vous êtes vautrés dans un escalier car vous avez la coordination d'un bébé gnoux ? Dites le nous !</h4>
             </section>
             <section id="actions">
-                <div class="btn-action">
+                <div class="btn btn-action">
                     <img height="60" src="views/assets/stairs_icon.png">
                     <a href="index.php?page=form-stairs">Ajouter un escalier</a>
                 </div>
-                <div class="btn-action">
+                <div class="btn btn-action">
                     <img height="60" src="views/assets/accident_icon.png">
                     <a>Reporter un accident</a>
                 </div>
-            </section>
-            <section id="other">
-                
             </section>
         </main>
     </body>
