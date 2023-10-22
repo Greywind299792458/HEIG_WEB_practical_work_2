@@ -5,24 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Starway Extravaganza</title>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
-        <link rel="stylesheet" href="styles/index.css">
-        <link rel="stylesheet" href="styles/style.css">
-        <script src="scripts/script.js"></script>
+        <link rel="stylesheet" href="views/styles/index.css">
+        <link rel="stylesheet" href="views/styles/style.css">
     </head>
     <body>
         <header>
-            <nav>
-                <p>Stairway Extravaganza</p>
-                <a>Liste</a>
-                <a>Carte</a>
-                <a>Statistiques</a>
-                <a>Report d'incident</a>
-                <a>Ajouter un escalier</a>
-            </nav>
+        <nav>
+            <a href="index.php?page=home">Stairway Extravaganza</p>
+            <a href="index.php?page=form-stairs">Ajouter un escalier</a>
+            <a href="index.php?page=form-accidents">Report d'incident</a>
+            <a href="index.php?page=map">Carte</a>
+            <a href="index.php?page=statistics">Statistiques</a>
+            <a href="index.php?page=list-stairs">Liste</a>
+        </nav>
         </header>
         <main>
             <section class="center">
-                <img height="200" src="assets/app_logo.png">
+                <img height="200" src="views/assets/app_logo.png">
                 <h1>Vous comptez les marches quand vous empruntez un escalier ?</h1>
                 <h2>Vous détestez les escaliers avec un nombre de marches impaires ?</h2>
                 <h3>Alors vous êtes au bon endroit</h3>
@@ -34,12 +33,12 @@
             </section>
             <section id="actions">
                 <div class="btn-action">
-                    <img height="60" src="assets/stairs_icon.png">
-                    Ajouter un escalier
+                    <img height="60" src="views/assets/stairs_icon.png">
+                    <a href="index.php?page=form-stairs">Ajouter un escalier</a>
                 </div>
                 <div class="btn-action">
-                    <img height="60" src="assets/accident_icon.png">
-                    Reporter un accident
+                    <img height="60" src="views/assets/accident_icon.png">
+                    <a>Reporter un accident</a>
                 </div>
             </section>
             <section id="other">

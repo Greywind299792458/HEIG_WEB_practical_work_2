@@ -5,6 +5,11 @@
     --element-color: #2CDA9D;
 }
 
+a {
+    color:var(--main-text-color);
+    text-decoration: none;
+}
+
 html {
     font-family: 'Montserrat', sans-serif;
     color:var(--main-text-color);
@@ -41,10 +46,10 @@ nav {
     gap:50px;
     justify-content: flex-end;
     align-items: center;
-    padding:5px 40px 5px 40px;
+    padding:10px 40px 10px 40px;
 }
 
-nav p {
+nav a:first-child {
     margin-right: auto;
 }
 
