@@ -1,0 +1,27 @@
+#fight-section {
+    margin: 20px auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#fight-section div {
+    border: 3px solid black;
+    width: 40%;
+}
+
+#fight-section div:first-child {
+    border: 3px solid red;
+    background-color: crimson;
+}
+
+#fight-section div:last-child {
+    border: 3px solid blue;
+    background-color: cornflowerblue;
+}
+
+h1,
+h3 {
+    text-align: center;
+}

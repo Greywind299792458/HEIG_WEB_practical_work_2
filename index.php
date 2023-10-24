@@ -11,10 +11,12 @@ if (isset($_GET['page'])) {
         case 'statistics':
             include 'controllers/statisticsController.php';
             break;
+        case 'home':
+            include 'controllers/HomeController.php';
+            break;
         default:
-            include 'controllers/homeController.php';
+            include 'controllers/stairsFormController.php';
     }
 } else {
-    include 'controllers/homeController.php';
+    include 'controllers/HomeController.php';
 }
-?>

@@ -22,7 +22,7 @@
         <main>
             <section id="form-section">
                 <h1>Ajouter un escalier</h1>
-                <form action="/action_page.php">
+                <form action="submit.php" method="post">
                     <input placeholder="Nom" type="text" id="stairs-name" name="stairsName"><br><br>
                     <input placeholder="Nombre de marches" type="number" min="0" id="num_steps" name="numSteps"><br><br>
                     <input class="btn" id="btn-send" type="submit" value="Submit">
