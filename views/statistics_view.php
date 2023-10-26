@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starway Extravaganza</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200" rel="stylesheet">
     <link rel="stylesheet" href="views/styles/statistics.css">
     <link rel="stylesheet" href="views/styles/style.css">
 </head>
@@ -22,16 +22,17 @@
         </nav>
     </header>
     <main>
-        <h1 class="container">Etat actuel de l'affrontement sans pitié entre escaliers pairs et impaires</h1>
-        <section id="fight-section">
+        <h2 class="container center">Etat actuel de l'affrontement entre escaliers avec un nombre de marches pair et impair</h2>
+        <section id="fight-section" class="center">
             <div>
-                <h2>Nombe d'escalier impaires: <?php echo $oddOnes; ?></h2>
+                <h2>Nombre de marches impair: <?php echo $oddOnes; ?></h2>
             </div>
             <div>
-                <h2>Nombe d'escalier pairs: <?php echo $evenOnes; ?></h2>
+                <h2>Nombre de marches pair: <?php echo $evenOnes; ?></h2>
             </div>
         </section>
-        <h3>Fun fact: Quasimment tous les escaliers de la HEIG ont un nombre de marches qui est un nombre premier!</h3>
+        <h3 class="center">Complétez votre collection d'escaliers pour inverser la tendance!</h3>
+        <h4 class="center">Fun fact: Presque tous les escaliers de la HEIG ont un nombre de marches qui est un nombre premier!</h4>
     </main>
 </body>
 <footer class="center">

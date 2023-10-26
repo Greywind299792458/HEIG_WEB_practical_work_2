@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
 }
 
 #fight-section div {
@@ -21,7 +20,8 @@
     background-color: cornflowerblue;
 }
 
-h1,
-h3 {
-    text-align: center;
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
