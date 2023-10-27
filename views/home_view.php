@@ -13,12 +13,12 @@
 <body>
     <header>
         <nav>
-            <a href="index.php?page=home">Stairway Extravaganza</p>
-                <a href="index.php?page=form-stairs">Ajouter un escalier</a>
-                <a href="index.php?page=form-accidents">Report d'incident</a>
-                <a href="index.php?page=map">Carte</a>
-                <a href="index.php?page=statistics">Statistiques</a>
-                <a href="index.php?page=list-stairs">Liste</a>
+            <a href="/">Stairway Extravaganza</a>
+            <a href="/stairs-form">Ajouter un escalier</a>
+            <a>Report d'incident</a>
+            <a>Carte</a>
+            <a href="/statistics">Statistiques</a>
+            <a href="/stairs-list">Liste</a>
         </nav>
     </header>
     <main>
@@ -36,7 +36,7 @@
         <section id="actions">
             <div class="btn btn-action">
                 <img height="60" src="views/assets/stairs_icon.png">
-                <a href="index.php?page=form-stairs">Ajouter un escalier</a>
+                <a href="/stairs-form">Ajouter un escalier</a>
             </div>
             <div class="btn btn-action">
                 <img height="60" src="views/assets/accident_icon.png">
