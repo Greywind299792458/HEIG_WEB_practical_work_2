@@ -33,8 +33,8 @@
                             <th>Escalier intérieur</th>
                             <th>Bâtiment</th>
                             <th>Etage de départ</th>
-                            <th>Note</th>
                             <th>Particularité</th>
+                            <th>Nombre d'accidents associés</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -47,10 +47,10 @@
                                 <td><?= $row['is_indoor'] ? 'Oui' : 'Non' ?></td>
                                 <td><?= $row['building_name'] ?></td>
                                 <td><?= $row['starting_level'] ?></td>
-                                <td><?= $row['rating'] ?></td>
                                 <td><?= $row['special_feature'] ?></td>
-                                <td onclick="editItem($row['stairs_id'])"><i class="bi bi-pencil-fill"></i></td>
-                                <td onclick="deleteItem(<?= $row['stairs_id'] ?>)"><i class="bi bi-trash"></i></td>
+                                <td><?= $row['accidents_count'] ?></td>
+                                <td onclick="editItem($row['id'])"><i class="bi bi-pencil-fill hand"></i></td>
+                                <td onclick="deleteItem(<?= $row['id'] ?>)"><i class="bi bi-trash hand"></i></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -66,9 +66,12 @@
 <script>
     function deleteItem(id) {
         console.log(id);
-        return fetch(`/stairs-list?id=${id}`, {
+        return fetch(`/stairs/list/${id}`, {
             method: 'DELETE'
-        }).then(response => window.location.reload());
+        }).then(response => {
+            console.log(response);
+            // window.location.reload()
+        });
     }
 
     function editItem(id) {

@@ -8,11 +8,11 @@ Elliot Ganty
 
 |  #  | Criterion                                                                | TODO  |
 | --: | ----------------------------------------------------------------------   | ----  |
-|  1  | HTML forms are used for creating entries in the dataset                  |       |
+|  1  | HTML forms are used for creating entries in the dataset                  |   x   |
 |  2  | HTML forms are used for updating entries in the dataset                  |       |
 |  3  | HTML forms are used for deleting entries in the dataset                  |       |
 |  4  | HTML forms include validation for user input (e.g., required fields, input format checks).  |       |
-|  5  | HTML views permits to read entries in the dataset                        |       |
+|  5  | HTML views permits to read entries in the dataset                        |   x   |
 
 ### Category 2 - Controller
 

@@ -45,4 +45,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 echo "Page non trouvée";
         }
         break;
+    case 'DELETE':
+        $controller = new StairsListController();
+        $controller->deleteItem();
+        break;
 }

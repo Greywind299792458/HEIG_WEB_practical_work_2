@@ -61,7 +61,8 @@ nav a:first-child {
 }
 
 a,
-.btn {
+.btn,
+.hand {
     cursor: pointer;
 }
 

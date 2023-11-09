@@ -6,7 +6,6 @@ class AccidentsFormController
 {
     public function showForm()
     {
-        $stairsList = Stairs::all();
         include 'views/accidents_form_view.php';
     }
 

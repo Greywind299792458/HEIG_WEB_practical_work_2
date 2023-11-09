@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Accident extends Model
 {
+    protected $primaryKey = 'id';
     protected $table = 'accident';
     public $timestamps = false;
 
     protected $fillable = [
+        'id',
         'event_description',
         'destroyed_ego',
         'spilled_drink',

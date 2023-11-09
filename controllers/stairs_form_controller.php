@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Response;
+
 class StairsFormController
 {
     public function showForm()
