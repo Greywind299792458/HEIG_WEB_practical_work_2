@@ -7,19 +7,18 @@
     <title>Starway Extravaganza</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:200" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="views/styles/stairsList.css">
-    <link rel="stylesheet" href="views/styles/style.css">
+    <link rel="stylesheet" href="/views/styles/stairsList.css">
+    <link rel="stylesheet" href="/views/styles/style.css">
 </head>
 
 <body>
     <header>
         <nav>
             <a href="/">Stairway Extravaganza</a>
-            <a href="/stairs-form">Ajouter un escalier</a>
-            <a>Report d'incident</a>
-            <a>Carte</a>
+            <a href="/stairs/form">Ajouter un escalier</a>
+            <a href="accidents/form">Report d'incident</a>
             <a href="/statistics">Statistiques</a>
-            <a href="/stairs-list">Liste</a>
+            <a href="/stairs/list">Liste</a>
         </nav>
     </header>
     <main>

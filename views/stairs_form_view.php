@@ -7,25 +7,24 @@
     <title>Starway Extravaganza</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:200" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="views/styles/stairsForm.css">
-    <link rel="stylesheet" href="views/styles/style.css">
+    <link rel="stylesheet" href="/views/styles/form.css">
+    <link rel="stylesheet" href="/views/styles/style.css">
 </head>
 
 <body>
     <header>
         <nav>
             <a href="/">Stairway Extravaganza</a>
-            <a href="/stairs-form">Ajouter un escalier</a>
-            <a>Report d'incident</a>
-            <a>Carte</a>
+            <a href="/stairs/form">Ajouter un escalier</a>
+            <a href="accidents/form">Report d'incident</a>
             <a href="/statistics">Statistiques</a>
-            <a href="/stairs-list">Liste</a>
+            <a href="/stairs/list">Liste</a>
         </nav>
     </header>
     <main>
         <section id="form-section">
             <h1>Ajouter un escalier</h1>
-            <form action="process-form" method="post">
+            <form action="/stairs/form" method="post">
                 <div>
                     <label for="stairs-name"><i class="bi bi-book"></i> Nom</label>
                     <input type="text" id="stairs-name" name="stairsName" required>
@@ -45,15 +44,6 @@
                 <div>
                     <label for="num-steps"><i class="bi bi-sort-numeric-up"></i> Etape de départ</label>
                     <input type="text" id="starting-level" name="startingLevel" required>
-                </div>
-                <div>
-                    <label for="rating"><i class="bi bi-emoji-smile-fill"></i> Evaluation</label>
-                    <select name="rating" id="rating">
-                        <option value="le pire">le pire</option>
-                        <option value="bof">bof</option>
-                        <option value="meh">meh</option>
-                        <option value="epic">epic</option>
-                    </select required>
                 </div>
                 <div>
                     <label for="special-feature"><i class="bi bi-chat-left-dots"></i> Particularité</label>

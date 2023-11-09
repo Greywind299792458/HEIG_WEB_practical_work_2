@@ -1,0 +1,24 @@
+# Ignore les fichiers de configuration de l'environnement
+.env
+
+# Ignore les fichiers de configuration de l'éditeur
+.vscode/
+.idea/
+
+# Ignore les fichiers générés par PHPStorm
+.phpstorm.meta.php/
+.phpstorm.meta.php/
+
+# Ignore les fichiers de configuration de Composer
+composer.phar
+/vendor/
+
+# Ignore les fichiers de configuration de l'environnement Docker
+.docker/
+
+# Ignore les fichiers de cache et les journaux
+/var/
+*.log
+
+# Ignore les fichiers de sauvegarde créés par les éditeurs
+*~

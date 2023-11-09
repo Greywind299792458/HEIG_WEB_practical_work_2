@@ -6,19 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starway Extravaganza</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:200" rel="stylesheet">
-    <link rel="stylesheet" href="views/styles/home.css">
-    <link rel="stylesheet" href="views/styles/style.css">
+    <link rel="stylesheet" href="/views/styles/home.css">
+    <link rel="stylesheet" href="/views/styles/style.css">
 </head>
 
 <body>
     <header>
         <nav>
             <a href="/">Stairway Extravaganza</a>
-            <a href="/stairs-form">Ajouter un escalier</a>
-            <a>Report d'incident</a>
-            <a>Carte</a>
+            <a href="/stairs/form">Ajouter un escalier</a>
+            <a href="accidents/form">Report d'incident</a>
             <a href="/statistics">Statistiques</a>
-            <a href="/stairs-list">Liste</a>
+            <a href="/stairs/list">Liste</a>
         </nav>
     </header>
     <main>
@@ -36,11 +35,11 @@
         <section id="actions">
             <div class="btn btn-action">
                 <img height="60" src="views/assets/stairs_icon.png">
-                <a href="/stairs-form">Ajouter un escalier</a>
+                <a href="/stairs/form">Ajouter un escalier</a>
             </div>
             <div class="btn btn-action">
                 <img height="60" src="views/assets/accident_icon.png">
-                <a>Reporter un accident</a>
+                <a href="/accidents/form">Reporter un accident</a>
             </div>
         </section>
     </main>
