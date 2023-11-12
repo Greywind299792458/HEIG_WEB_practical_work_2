@@ -73,3 +73,14 @@ a,
     font-size: 1.2em;
     color: white;
 }
+
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.centered-info {
+    margin: auto;
+    width: 50vw;
+}

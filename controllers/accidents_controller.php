@@ -2,7 +2,7 @@
 
 require_once 'models/accident.php';
 
-class AccidentsFormController
+class AccidentsController
 {
     public function showForm()
     {

@@ -14,7 +14,7 @@
     <header>
         <nav>
             <a href="/">Stairway Extravaganza</a>
-            <a href="/stairs/form">Ajouter un escalier</a>
+            <a href="/stairs/list">Ajouter un escalier</a>
             <a href="accidents/form">Report d'incident</a>
             <a href="/statistics">Statistiques</a>
             <a href="/stairs/list">Liste</a>

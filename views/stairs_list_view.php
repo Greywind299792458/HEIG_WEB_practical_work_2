@@ -34,7 +34,6 @@
                             <th>Bâtiment</th>
                             <th>Etage de départ</th>
                             <th>Particularité</th>
-                            <th>Nombre d'accidents associés</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -48,34 +47,58 @@
                                 <td><?= $row['building_name'] ?></td>
                                 <td><?= $row['starting_level'] ?></td>
                                 <td><?= $row['special_feature'] ?></td>
-                                <td><?= $row['accidents_count'] ?></td>
-                                <td onclick="editItem($row['id'])"><i class="bi bi-pencil-fill hand"></i></td>
-                                <td onclick="deleteItem(<?= $row['id'] ?>)"><i class="bi bi-trash hand"></i></td>
+                                <td onclick="editStairs(<?php echo $row['id']; ?>)"><i class="bi bi-pencil-fill hand"></i></td>
+                                <td onclick="deleteStairs(<?php echo $row['id']; ?>)"><i class="bi bi-trash-fill hand"></i></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
         </section>
+        <section id="info-section" class="center centered-info">
+            <?php
+            if (isset($deleteSuccess) && $deleteSuccess === "true") {
+                echo '<p style="color: green;">L\'escalier a été supprimé avec succès!</p>';
+            }
+            if (isset($error) && $error !== "") {
+                echo '<p style="color: red;">' . $error . '</p>';
+            }
+            ?>
+        </section>
     </main>
 </body>
-<footer class="center">
+<footer class="center fixed-footer">
     Ce site a été créé avec minutie par un Asperger qui adore compter les trucs et surtout les marches des escaliers.
     Qui aurait pensé que cette obsession deviendrait utile un jour pour un projet de WEB?
 </footer>
+
 <script>
-    function deleteItem(id) {
-        console.log(id);
-        return fetch(`/stairs/list/${id}`, {
-            method: 'DELETE'
-        }).then(response => {
-            console.log(response);
-            // window.location.reload()
-        });
+    function editStairs(id) {
+        window.location.href = `/stairs/form/${id}`
     }
 
-    function editItem(id) {
-
+    function deleteStairs(id) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cet escalier?')) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('DELETE', '/stairs/' + id, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var result = JSON.parse(xhr.responseText);
+                    if (result.success) {
+                        window.location.href = '/stairs/list?deleteSuccess=true';
+                    } else {
+                        window.location.href = '/stairs/list?deleteSuccess=false&error=' + encodeURIComponent(result.message);
+                    }
+                } else {
+                    window.location.href = '/stairs/list?deleteSuccess=false&error=' + encodeURIComponent(xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                window.location.href = '/stairs/list?deleteSuccess=false&error=Erreur réseau lors de la suppression';
+            };
+            xhr.send();
+        }
     }
 </script>
 

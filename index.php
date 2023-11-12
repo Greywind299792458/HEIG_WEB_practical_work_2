@@ -1,52 +1,74 @@
 <?php
 require_once 'controllers/home_controller.php';
-require_once 'controllers/stairs_form_controller.php';
-require_once 'controllers/stairs_list_controller.php';
+require_once 'controllers/Stairs_controller.php';
 require_once 'controllers/statistics_controller.php';
-require_once 'controllers/accidents_form_controller.php';
+require_once 'controllers/accidents_controller.php';
 
-switch ($_SERVER['REQUEST_METHOD']) {
-    case 'POST':
-        switch ($_SERVER['REQUEST_URI']) {
-            case '/stairs/form':
-                $controller = new StairsFormController();
-                $controller->processForm();
+list($controller, $action, $id) = array_merge(Router::handleRequest(
+    $_SERVER['REQUEST_METHOD'],
+    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+), [null]);
+
+if ($action == '') {
+    echo "Method not allowed";
+} elseif ($action == 'notFound') {
+    include 'views/404_view.php';
+} else {
+    if ($id != null) {
+        $controller->$action($id);
+    } else {
+        $controller->$action();
+    }
+}
+
+
+class Router
+{
+    public static function handleRequest($method, $uri)
+    {
+        switch ($method) {
+            case 'POST':
+                switch ($uri) {
+                    case '/stairs/form':
+                        return [new StairsController(), 'processForm'];
+                    case '/accidents/form':
+                        return [new AccidentsController(), 'processForm'];
+                    default:
+                        return [null, 'notFound'];
+                }
                 break;
-            case '/accidents/form':
-                $controller = new AccidentsFormController();
-                $controller->processForm();
+            case 'GET':
+                if (preg_match('/\/stairs\/form\/(\d+)/', $uri, $matches)) {
+                    return [new StairsController(), 'showForm', $matches[1]];
+                }
+                switch ($uri) {
+                    case '/':
+                        return [new HomeController(), 'index'];
+                    case '/stairs/form':
+                        return [new StairsController(), 'showForm'];
+                    case '/stairs/list':
+                        return [new StairsController(), 'showList'];
+                    case '/accidents/form':
+                        return [new AccidentsController(), 'showForm'];
+                    case '/statistics':
+                        return [new StatisticsController(), 'showStatistics'];
+                    default:
+                        return [null, 'notFound'];
+                }
                 break;
+            case 'DELETE':
+                $urlSegments = explode('/', $uri);
+                switch ($urlSegments[1]) {
+                    case 'stairs':
+                        if (isset($urlSegments[2])) {
+                            return [new StairsController(), 'deleteItem', $urlSegments[2]];
+                        } else {
+                            return [null, ''];
+                        }
+                    default:
+                        return [null, ''];
+                }
         }
-        break;
-    case 'GET':
-        switch ($_SERVER['REQUEST_URI']) {
-            case '/':
-                $controller = new HomeController();
-                $controller->index();
-                break;
-            case '/stairs/form':
-                $controller = new StairsFormController();
-                $controller->showForm();
-                break;
-            case '/accidents/form':
-                $controller = new AccidentsFormController();
-                $controller->showForm();
-                break;
-            case '/stairs/list':
-                $controller = new StairsListController();
-                $controller->showList();
-                break;
-            case '/statistics':
-                $controller = new StatisticsController();
-                $controller->showStatistics();
-                break;
-            default:
-                // Routes inconnues
-                echo "Page non trouvée";
-        }
-        break;
-    case 'DELETE':
-        $controller = new StairsListController();
-        $controller->deleteItem();
-        break;
+        return [null, 'notFound'];
+    }
 }

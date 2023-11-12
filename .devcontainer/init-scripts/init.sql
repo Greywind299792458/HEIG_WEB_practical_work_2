@@ -10,7 +10,7 @@ create table stairs(
 	special_feature varchar(255),
 	primary key(id)
 );
-
+drop table if exists accident;
 create table accident(
 	id smallint auto_increment,
 	event_description varchar(255),

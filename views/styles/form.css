@@ -5,7 +5,7 @@ body {
 }
 
 #form-section {
-    height: 120vh;
+    height: fit-content;
     width: 80vw;
     margin: 30px auto 30px auto;
     background-color: white;
@@ -26,6 +26,11 @@ form {
 #instructions {
     text-align: justify;
     height: fit-content;
+}
+
+#results {
+    margin: auto;
+    text-align: center;
 }
 
 label {
