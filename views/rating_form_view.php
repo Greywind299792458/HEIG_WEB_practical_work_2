@@ -22,7 +22,7 @@
     </header>
     <main>
         <section id="form-section">
-            <h1>Ajouter un avis</h1>
+            <h1><?php echo isset($data['id']) ? 'Modifier' : 'Ajouter'; ?> un avis</h1>
             <form action="/rating/form" method="post">
                 <?php if (isset($data['id'])) : ?>
                     <input type="hidden" name="ratingId" value="<?php echo $data['id']; ?>">
@@ -31,7 +31,7 @@
                     <input type="hidden" name="stairsId" value="<?php echo $stairs['id']; ?>">
                 <?php endif; ?>
                 <div>
-                    <span for="stairs">Escalier: <?php echo $stairs['stairs_name']; ?></span>
+                    <span for="stairs">Escalier: <?php echo $stairs; ?></span>
                 </div>
                 <div>
                     <label for="rating"><i class="bi bi-award-fill"></i></i>Avis</label>
@@ -45,7 +45,9 @@
                 </div>
                 <div>
                     <label for="review"><i class="bi bi-chat-left-text"></i>Avis</label>
-                    <textarea id="review" name="review" rows="8" value="<?php echo isset($data['review']) ? $data['review'] : ''; ?>"></textarea>
+                    <textarea id="review" name="review" rows="8">
+                        <?php echo isset($data['review']) ? $data['review'] : ''; ?>
+                    </textarea>
                 </div>
                 <div>
                     <label for="is-favorite"><i class="bi bi-bookmark-star"></i>Favori</label>

@@ -20,7 +20,7 @@ class StairsController
     public function showList()
     {
         $data = Stairs::getAll();
-        $deleteSuccess = isset($_GET['success']) ? $_GET['success'] : null;
+        $success = isset($_GET['success']) ? $_GET['success'] : null;
         $error = isset($_GET['error']) ? $_GET['error'] : null;
         include 'views/stairs_list_view.php';
     }

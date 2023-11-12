@@ -18,26 +18,28 @@ class Rating extends Model
 
     public static function createItem(array $data)
     {
-        if (!isset($data['ratingId']) || !Rating::find($data['ratingId'])) {
-            return self::create([
-                'stairs_id' => $data['stairsId'],
-                'rating' => $data['rating'],
-                'review' => $data['review'] ?? null,
-                'is_favorite' => isset($data['isFavorite']) ? 1 : 0,
-            ]);
-        } else {
-            Rating::updateRating($data);
+        if (!isset($data['stairsId']) || !Stairs::find($data['stairsId'])) {
+            throw new Exception('L\'escalier ciblé n\'a été trouvé.');
         }
-    }
-
-    public static function updateItem(array $data)
-    {
-        $rating = Rating::getById($data['ratingId']);
-        $rating->stairs_id = $data['stairsId'];
-        $rating->rating = $data['rating'];
-        $rating->review = $data['review'] ?? null;
-        $rating->is_favorite = isset($data['isFavorite']) ? 1 : 0;
-        $rating->save();
+        $rating = Rating::where('stairs_id', $data['stairsId'])->first();
+        if ($rating == null) {
+            if (isset($data['ratingId'])) {
+                throw new Exception('l\'escalier associé à l\'avis reçu n\'a pas été trouvé.');
+            } else {
+                return self::create([
+                    'stairs_id' => $data['stairsId'],
+                    'rating' => $data['rating'],
+                    'review' => $data['review'] ?? null,
+                    'is_favorite' => isset($data['isFavorite']) ? 1 : 0,
+                ]);
+            }
+        } else {
+            $rating->stairs_id = $data['stairsId'];
+            $rating->rating = $data['rating'];
+            $rating->review = $data['review'] ?? null;
+            $rating->is_favorite = isset($data['isFavorite']) ? 1 : 0;
+            $rating->save();
+        }
     }
 
     public static function getById(int $id)

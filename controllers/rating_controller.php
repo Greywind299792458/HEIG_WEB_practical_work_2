@@ -2,14 +2,14 @@
 
 class RatingController
 {
-    public function showForm(int $stairsId, $id = null)
+    public function showForm(int $stairsId, $ratingId = null)
     {
         $success = isset($_GET['success']) ? $_GET['success'] : null;
         $error = isset($_GET['error']) ? $_GET['error'] : null;
         $stairs = Stairs::getById($stairsId);
         try {
-            if ($id != null) {
-                $data = Rating::getById($id);
+            if ($ratingId != null) {
+                $data = Rating::getById($ratingId);
             }
         } catch (Exception $e) {
             header("Location: /rating/form?success=false&error=" . urlencode($e->getMessage()));
@@ -30,7 +30,6 @@ class RatingController
             exit();
         } catch (Exception $e) {
             $redirectUrl = "/rating/form/$stairsId" . ($ratingId ? "/$ratingId?" : "?") . "success=false&error=" . urlencode($e->getMessage());
-            echo $redirectUrl;
             header("Location: $redirectUrl");
             exit();
         }

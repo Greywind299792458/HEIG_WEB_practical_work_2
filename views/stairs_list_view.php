@@ -71,8 +71,8 @@
         </section>
         <section id="info-section" class="center centered-info">
             <?php
-            if (isset($deleteSuccess) && $deleteSuccess === "true") {
-                echo '<p style="color: green;">L\'opération a été effectuée avec succès!</p>';
+            if (isset($success) && $success === "true") {
+                echo '<p style="color: white;">L\'opération a été effectuée avec succès!</p>';
             }
             if (isset($error) && $error !== "") {
                 echo '<p style="color: red;">' . $error . '</p>';
@@ -100,35 +100,32 @@
     }
 
     function deleteRating(id) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('DELETE', `/rating/${id}`, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        sendDeleteRequest(xhr, 'Êtes-vous sûr de vouloir supprimer cet avis?')
+        sendDeleteRequest(`/rating/${id}`, 'Êtes-vous sûr de vouloir supprimer cet avis?')
     }
 
     function deleteStairs(id) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('DELETE', `/stairs/${id}`, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        sendDeleteRequest(xhr, 'Êtes-vous sûr de vouloir supprimer cet escalier?')
+        sendDeleteRequest(`/stairs/${id}`, 'Êtes-vous sûr de vouloir supprimer cet escalier?')
     }
 
-    function sendDeleteRequest(xhr, message) {
+    function sendDeleteRequest(url, message) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
         if (confirm(message)) {
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     var result = JSON.parse(xhr.responseText);
                     if (result.success) {
-                        window.location.href = '/stairs/list?deleteSuccess=true';
+                        window.location.href = '/stairs/list?success=true';
                     } else {
-                        window.location.href = '/stairs/list?success=false&error=' + encodeURIComponent(result.message);
+                        window.location.href = '/stairs/list?success=false&error=Erreur lors de la suppression';
                     }
                 } else {
-                    window.location.href = '/stairs/list?success=false&error=' + encodeURIComponent(xhr.statusText);
+                    window.location.href = '/stairs/list?success=false&error=' + result.error;
                 }
             };
             xhr.onerror = function() {
-                window.location.href = '/stairs/list?deleteSuccess=false&error=Erreur réseau lors de la suppression';
+                window.location.href = '/stairs/list?success=false&error=Erreur réseau lors de la suppression';
             };
             xhr.send();
         }
