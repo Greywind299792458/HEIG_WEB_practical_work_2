@@ -8,24 +8,24 @@ Elliot Ganty
 
 |  #  | Criterion                                                                | TODO  |
 | --: | ----------------------------------------------------------------------   | ----  |
-|  1  | HTML forms are used for creating entries in the dataset                  |   x   |
-|  2  | HTML forms are used for updating entries in the dataset                  |       |
-|  3  | HTML forms are used for deleting entries in the dataset                  |       |
-|  4  | HTML forms include validation for user input (e.g., required fields, input format checks).  |       |
-|  5  | HTML views permits to read entries in the dataset                        |   x   |
+|  1  | HTML forms are used for creating entries in the dataset                  |   X   |
+|  2  | HTML forms are used for updating entries in the dataset                  |   X   |
+|  3  | HTML forms are used for deleting entries in the dataset                  |   X   |
+|  4  | HTML forms include validation for user input (e.g., required fields, input format checks).  |   X   |
+|  5  | HTML views permits to read entries in the dataset                        |   X   |
 
 ### Category 2 - Controller
 
 |  #  | Criterion                                                                | TODO |
 | --: | ----------------------------------------------------------------------   | ---- |
-| 6   | The controller is implemented using PHP                                  |      |
-| 7   | The controller is implemented using the MVC pattern                      |      |
-| 8   | Routes are used to create entries in the dataset                         |      |
-| 9   | Routes are used to update entries in the dataset                         |      |
-| 10  | Routes are used to delete entries in the dataset                         |      |
-| 11  | Routes are used to read entries in the dataset                           |      |
+| 6   | The controller is implemented using PHP                                  |   X  |
+| 7   | The controller is implemented using the MVC pattern                      |   X  |
+| 8   | Routes are used to create entries in the dataset                         |   X  |
+| 9   | Routes are used to update entries in the dataset                         |   X  |
+| 10  | Routes are used to delete entries in the dataset                         |   X  |
+| 11  | Routes are used to read entries in the dataset                           |   X  |
 | 12  | A library manager is used to manage the dependencies of the project (Composer, Pickle) |   X  |
-| 13  | The controllers check the inputs from the user                           |      |
+| 13  | The controllers check the inputs from the user                           |   X  |
 
 ### Category 3 - Model
 
@@ -39,7 +39,7 @@ Elliot Ganty
 
 |  #  | Criterion                                                                | TODO |
 | --: | ----------------------------------------------------------------------   | ---- |
-| 17  |There are feedback on successful or failed actions.	                     |      |
+| 17  |There are feedback on successful or failed actions.	                     |   X  |
 
 ### Category 5 - Repository
 
