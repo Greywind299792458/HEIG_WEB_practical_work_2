@@ -12,7 +12,10 @@ class RatingController
                 $data = Rating::getById($ratingId);
             }
         } catch (Exception $e) {
-            header("Location: /rating/form?success=false&error=" . urlencode($e->getMessage()));
+            header(
+                "Location: /rating/form?success=false&error=" .
+                    urlencode($e->getMessage())
+            );
             exit();
         }
         include 'views/rating_form_view.php';
@@ -23,19 +26,21 @@ class RatingController
         $ratingId = isset($_POST['ratingId']) ? $_POST['ratingId'] : null;
         $stairsId = $_POST['stairsId'];
         try {
-            $this->validateData($_POST);
+            $this->_validateData($_POST);
             Rating::createItem($_POST);
             $redirectUrl = "/stairs/list?success=true";
             header("Location: $redirectUrl");
             exit();
         } catch (Exception $e) {
-            $redirectUrl = "/rating/form/$stairsId" . ($ratingId ? "/$ratingId?" : "?") . "success=false&error=" . urlencode($e->getMessage());
+            $redirectUrl = "/rating/form/$stairsId" .
+                ($ratingId ? "/$ratingId?" : "?") .
+                "success=false&error=" . urlencode($e->getMessage());
             header("Location: $redirectUrl");
             exit();
         }
     }
 
-    private function validateData(array $formData)
+    private function _validateData(array $formData)
     {
         if (empty($formData['stairsId']) || empty($formData['rating'])) {
             throw new Exception('Certaines Informations sont manquantes.');
@@ -55,7 +60,8 @@ class RatingController
         } catch (Exception $e) {
             $response = [
                 'success' => false,
-                'message' => 'Erreur lors de la suppression de l\'avis: ' . $e->getMessage()
+                'message' =>
+                'Erreur lors de la suppression de l\'avis: ' . $e->getMessage()
             ];
             header('Content-Type: application/json');
             http_response_code(500);

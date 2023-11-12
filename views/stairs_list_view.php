@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/views/styles/stairsList.css">
     <link rel="stylesheet" href="/views/styles/style.css">
+    <script src="/views/scripts/stairs_list.js"></script>
 </head>
 
 <body>
@@ -48,21 +49,49 @@
                                 <td><?= $row['starting_level'] ?></td>
                                 <td><?= $row['special_feature'] ?></td>
                                 <?php if ($row['ratings'] === null) { ?>
-                                    <td colspan="4"><button onclick="addRating(<?php echo $row['id']; ?>)">Ajouter un avis</button></td>
+                                    <td colspan="4">
+                                        <button onclick="addRating(
+                                            <?php echo $row['id']; ?>)">
+                                            Ajouter un avis
+                                        </button>
+                                    </td>
                                 <?php } else { ?>
                                     <td class="no-border">
                                         <?php
-                                        if (isset($row['ratings']['is_favorite']) && $row['ratings']['is_favorite']) {
+                                        if (isset($row['ratings']['is_favorite']) 
+                                            && $row['ratings']['is_favorite']
+                                        ) {
                                             echo 'Favori <3 !';
                                         }
                                         ?>
                                     </td>
-                                    <td class="no-border"><?php echo $row['ratings']['rating']; ?></td>
-                                    <td class="no-border"><button onclick="editRating(<?php echo $row['id']; ?>, <?php echo $row['ratings']['id']; ?>)">Modifier</button></td>
-                                    <td><button onclick="deleteRating(<?php echo $row['ratings']['id']; ?>)">Supprimer</button></td>
+                                    <td class="no-border">
+                                        <?php echo $row['ratings']['rating']; ?>
+                                    </td>
+                                    <td class="no-border">
+                                        <button onclick="editRating(
+                                            <?php echo $row['id']; ?>, 
+                                            <?php echo $row['ratings']['id']; ?>)">
+                                            Modifier
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button onclick="deleteRating(
+                                            <?php echo $row['ratings']['id']; ?>)">
+                                            Supprimer
+                                        </button>
+                                    </td>
                                 <?php } ?>
-                                <td class="no-border" onclick="editStairs(<?php echo $row['id']; ?>)"><i class="bi bi-pencil-fill hand"></i></td>
-                                <td class="no-border" onclick="deleteStairs(<?php echo $row['id']; ?>)"><i class="bi bi-trash-fill hand"></i></td>
+                                <td class="no-border" 
+                                    onclick="editStairs(
+                                        <?php echo $row['id']; ?>)">
+                                    <i class="bi bi-pencil-fill hand"></i>
+                                </td>
+                                <td class="no-border" 
+                                    onclick="deleteStairs(
+                                        <?php echo $row['id']; ?>)">
+                                    <i class="bi bi-trash-fill hand"></i>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -72,7 +101,8 @@
         <section id="info-section" class="center centered-info">
             <?php
             if (isset($success) && $success === "true") {
-                echo '<p style="color: white;">L\'opération a été effectuée avec succès!</p>';
+                echo '<p style="color: white;">
+                L\'opération a été effectuée avec succès!</p>';
             }
             if (isset($error) && $error !== "") {
                 echo '<p style="color: red;">' . $error . '</p>';
@@ -82,54 +112,10 @@
     </main>
 </body>
 <footer class="center fixed-footer">
-    Ce site a été créé avec minutie par un Asperger qui adore compter les trucs et surtout les marches des escaliers.
-    Qui aurait pensé que cette obsession deviendrait utile un jour pour un projet de WEB?
+    Ce site a été créé avec minutie par un Asperger qui adore compter 
+    les trucs et surtout les marches des escaliers.
+    Qui aurait pensé que cette obsession deviendrait utile un jour 
+    pour un projet de WEB?
 </footer>
-
-<script>
-    function editStairs(id) {
-        window.location.href = `/stairs/form/${id}`
-    }
-
-    function addRating(stairsId) {
-        window.location.href = `/rating/form/${stairsId}`
-    }
-
-    function editRating(stairsId, ratingId) {
-        window.location.href = `/rating/form/${stairsId}/${ratingId}`
-    }
-
-    function deleteRating(id) {
-        sendDeleteRequest(`/rating/${id}`, 'Êtes-vous sûr de vouloir supprimer cet avis?')
-    }
-
-    function deleteStairs(id) {
-        sendDeleteRequest(`/stairs/${id}`, 'Êtes-vous sûr de vouloir supprimer cet escalier?')
-    }
-
-    function sendDeleteRequest(url, message) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('DELETE', url, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        if (confirm(message)) {
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    var result = JSON.parse(xhr.responseText);
-                    if (result.success) {
-                        window.location.href = '/stairs/list?success=true';
-                    } else {
-                        window.location.href = '/stairs/list?success=false&error=Erreur lors de la suppression';
-                    }
-                } else {
-                    window.location.href = '/stairs/list?success=false&error=' + result.error;
-                }
-            };
-            xhr.onerror = function() {
-                window.location.href = '/stairs/list?success=false&error=Erreur réseau lors de la suppression';
-            };
-            xhr.send();
-        }
-    }
-</script>
 
 </html>

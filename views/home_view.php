@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starway Extravaganza</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200" 
+        rel="stylesheet">
     <link rel="stylesheet" href="/views/styles/home.css">
     <link rel="stylesheet" href="/views/styles/style.css">
 </head>
@@ -40,8 +41,10 @@
     </main>
 </body>
 <footer class="center">
-    Ce site a été créé avec minutie par un Asperger qui adore compter les trucs et surtout les marches des escaliers.
-    Qui aurait pensé que cette obsession deviendrait utile un jour pour un projet de WEB?
+    Ce site a été créé avec minutie par un Asperger qui adore compter 
+    les trucs et surtout les marches des escaliers.
+    Qui aurait pensé que cette obsession deviendrait utile un jour 
+    pour un projet de WEB?
 </footer>
 
 </html>

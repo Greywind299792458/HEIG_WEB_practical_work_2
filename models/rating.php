@@ -24,14 +24,18 @@ class Rating extends Model
         $rating = Rating::where('stairs_id', $data['stairsId'])->first();
         if ($rating == null) {
             if (isset($data['ratingId'])) {
-                throw new Exception('l\'escalier associé à l\'avis reçu n\'a pas été trouvé.');
+                throw new Exception(
+                    'l\'escalier associé à l\'avis reçu n\'a pas été trouvé.'
+                );
             } else {
-                return self::create([
-                    'stairs_id' => $data['stairsId'],
-                    'rating' => $data['rating'],
-                    'review' => $data['review'] ?? null,
-                    'is_favorite' => isset($data['isFavorite']) ? 1 : 0,
-                ]);
+                return self::create(
+                    [
+                        'stairs_id' => $data['stairsId'],
+                        'rating' => $data['rating'],
+                        'review' => $data['review'] ?? null,
+                        'is_favorite' => isset($data['isFavorite']) ? 1 : 0,
+                    ]
+                );
             }
         } else {
             $rating->stairs_id = $data['stairsId'];
@@ -46,7 +50,9 @@ class Rating extends Model
     {
         $rating = Rating::find($id);
         if (!$rating) {
-            throw new Exception('Aucun enregistrement associé avec cet id n\'a été trouvé.');
+            throw new Exception(
+                'Aucun enregistrement associé avec cet id n\'a été trouvé.'
+            );
         }
         return $rating;
     }

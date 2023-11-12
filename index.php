@@ -4,10 +4,13 @@ require_once 'controllers/Stairs_controller.php';
 require_once 'controllers/statistics_controller.php';
 require_once 'controllers/rating_controller.php';
 
-list($controller, $action, $id, $additionalId) = array_merge(Router::handleRequest(
-    $_SERVER['REQUEST_METHOD'],
-    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
-), [null, null]);
+list($controller, $action, $id, $additionalId) = array_merge(
+    Router::handleRequest(
+        $_SERVER['REQUEST_METHOD'],
+        parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+    ),
+    [null, null]
+);
 
 if ($action == '') {
     echo "Method not allowed";
@@ -41,17 +44,35 @@ class Router
                 }
                 break;
             case 'GET':
-                if (preg_match('/\/stairs\/form\/(\d+)(?:\?.*)?/', $uri, $matches)) {
+                if (preg_match(
+                        '/\/stairs\/form\/(\d+)(?:\?.*)?/',
+                        $uri,
+                        $matches
+                    )
+                ) {
                     return [new StairsController(), 'showForm', $matches[1]];
                 }
-                if (preg_match('/\/rating\/form\/(\d+)\/(\d+)?(?:\?.*)?/', $uri, $matches)) {
+                if (preg_match(
+                        '/\/rating\/form\/(\d+)\/(\d+)?(?:\?.*)?/',
+                        $uri,
+                        $matches
+                    )
+                ) {
                     $escalierId = $matches[1];
                     $ratingId = isset($matches[2]) ? $matches[2] : null;
-                    return [new RatingController(), 'showForm', $escalierId, $ratingId];
+                    return [
+                        new RatingController(),
+                        'showForm',
+                        $escalierId, $ratingId
+                    ];
                 }
                 if (preg_match('/\/rating\/form\/(\d+)(?:\?.*)?/', $uri, $matches)) {
                     $escalierId = $matches[1];
-                    return [new RatingController(), 'showForm', $escalierId];
+                    return [
+                        new RatingController(),
+                        'showForm',
+                        $escalierId
+                    ];
                 }
                 switch ($uri) {
                     case '/':
@@ -71,13 +92,21 @@ class Router
                 switch ($urlSegments[1]) {
                     case 'stairs':
                         if (isset($urlSegments[2])) {
-                            return [new StairsController(), 'deleteItem', $urlSegments[2]];
+                            return [
+                                new StairsController(),
+                                'deleteItem',
+                                $urlSegments[2]
+                            ];
                         } else {
                             return [null, ''];
                         }
                     case 'rating':
                         if (isset($urlSegments[2])) {
-                            return [new RatingController(), 'deleteItem', $urlSegments[2]];
+                            return [
+                                new RatingController(),
+                                'deleteItem',
+                                $urlSegments[2]
+                            ];
                         } else {
                             return [null, ''];
                         }

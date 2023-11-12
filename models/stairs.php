@@ -38,14 +38,16 @@ class Stairs extends Model
     public static function createItem(array $data)
     {
         if (!isset($data['id'])) {
-            return self::create([
-                'stairs_name' => $data['stairsName'],
-                'num_steps' => $data['numSteps'],
-                'is_indoor' => isset($data['isIndoor']) ? 1 : 0,
-                'building_name' => $data['buildingName'] ?? null,
-                'starting_level' => $data['startingLevel'],
-                'special_feature' => $data['specialFeature'] ?? null
-            ]);
+            return self::create(
+                [
+                    'stairs_name' => $data['stairsName'],
+                    'num_steps' => $data['numSteps'],
+                    'is_indoor' => isset($data['isIndoor']) ? 1 : 0,
+                    'building_name' => $data['buildingName'] ?? null,
+                    'starting_level' => $data['startingLevel'],
+                    'special_feature' => $data['specialFeature'] ?? null
+                ]
+            );
         } else {
             Stairs::updateItem($data);
         }
@@ -67,7 +69,9 @@ class Stairs extends Model
     {
         $stairs = Stairs::find($id);
         if (!$stairs) {
-            throw new Exception('Aucun enregistrement associé avec cet id n\'a été trouvé.');
+            throw new Exception(
+                'Aucun enregistrement associé avec cet id n\'a été trouvé.'
+            );
         }
         return $stairs;
     }
