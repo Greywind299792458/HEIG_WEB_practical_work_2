@@ -16,7 +16,6 @@
         <nav>
             <a href="/">Stairway Extravaganza</a>
             <a href="/stairs/form">Ajouter un escalier</a>
-            <a href="accidents/form">Report d'incident</a>
             <a href="/statistics">Statistiques</a>
             <a href="/stairs/list">Liste</a>
         </nav>
@@ -47,6 +46,13 @@
                                 <td><?= $row['building_name'] ?></td>
                                 <td><?= $row['starting_level'] ?></td>
                                 <td><?= $row['special_feature'] ?></td>
+                                <td>
+                                    <?php if ($row['rating_id'] === null) { ?>
+                                        <button onclick="addRating(<?php echo $row['id']; ?>)">Ajouter Rating</button>
+                                    <?php } else { ?>
+                                        <button onclick="editRating(<?php echo $row['id']; ?>, <?php echo $row['rating']['id']; ?>)">Modifier Rating</button>
+                                    <?php } ?>
+                                </td>
                                 <td onclick="editStairs(<?php echo $row['id']; ?>)"><i class="bi bi-pencil-fill hand"></i></td>
                                 <td onclick="deleteStairs(<?php echo $row['id']; ?>)"><i class="bi bi-trash-fill hand"></i></td>
                             </tr>
@@ -75,6 +81,14 @@
 <script>
     function editStairs(id) {
         window.location.href = `/stairs/form/${id}`
+    }
+
+    function addRating(stairsId) {
+        window.location.href = `/rating/form/${stairsId}`
+    }
+
+    function editRating(stairsId, ratingId) {
+        window.location.href = `/rating/form/${stairsId}/${ratingId}`
     }
 
     function deleteStairs(id) {

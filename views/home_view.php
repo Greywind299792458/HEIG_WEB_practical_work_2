@@ -14,8 +14,7 @@
     <header>
         <nav>
             <a href="/">Stairway Extravaganza</a>
-            <a href="/stairs/list">Ajouter un escalier</a>
-            <a href="accidents/form">Report d'incident</a>
+            <a href="/stairs/form">Ajouter un escalier</a>
             <a href="/statistics">Statistiques</a>
             <a href="/stairs/list">Liste</a>
         </nav>
@@ -25,21 +24,17 @@
             <img height="200" src="views/assets/app_logo.png">
             <h1>Vous comptez les marches quand vous empruntez un escalier ?</h1>
             <h2>Vous détestez les escaliers avec un nombre de marches impaires ?</h2>
-            <h3>Alors vous êtes au bon endroit</h3>
+            <h3>Alors vous êtes au bon endroit !</h3>
 
-            <h4>Cette application unique a pour but d'établir un recensement des escaliers afin d'étudier
-                la répartition du nombre de marches, leur emplacement et le nombre d'accidents associés
+            <h4>Cette application révolutionnaire a pour but d'établir un recensement des escaliers afin d'étudier
+                la répartition du nombre de marches
             </h4>
-            <h4>Vous avez trouvé un escalier ? Ou encore mieux, vous vous êtes vautrés dans un escalier car vous avez la coordination d'un bébé gnoux ? Dites le nous !</h4>
+            <h4>Vous avez trouvé un escalier ? Dites le nous !</h4>
         </section>
         <section id="actions">
             <div class="btn btn-action">
                 <img height="60" src="views/assets/stairs_icon.png">
                 <a href="/stairs/form">Ajouter un escalier</a>
-            </div>
-            <div class="btn btn-action">
-                <img height="60" src="views/assets/accident_icon.png">
-                <a href="/accidents/form">Reporter un accident</a>
             </div>
         </section>
     </main>

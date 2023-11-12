@@ -2,7 +2,7 @@
 require_once 'controllers/home_controller.php';
 require_once 'controllers/Stairs_controller.php';
 require_once 'controllers/statistics_controller.php';
-require_once 'controllers/accidents_controller.php';
+require_once 'controllers/rating_controller.php';
 
 list($controller, $action, $id) = array_merge(Router::handleRequest(
     $_SERVER['REQUEST_METHOD'],
@@ -21,7 +21,6 @@ if ($action == '') {
     }
 }
 
-
 class Router
 {
     public static function handleRequest($method, $uri)
@@ -31,15 +30,18 @@ class Router
                 switch ($uri) {
                     case '/stairs/form':
                         return [new StairsController(), 'processForm'];
-                    case '/accidents/form':
-                        return [new AccidentsController(), 'processForm'];
                     default:
                         return [null, 'notFound'];
                 }
                 break;
             case 'GET':
-                if (preg_match('/\/stairs\/form\/(\d+)/', $uri, $matches)) {
+                if (preg_match('/\/stairs\/form\/(\d+)(?:\?.*)?/', $uri, $matches)) {
                     return [new StairsController(), 'showForm', $matches[1]];
+                }
+                if (preg_match('/\/rating\/form\/(\d+)(\d+)?(?:\?.*)?/', $uri, $matches)) {
+                    $escalierId = $matches[1];
+                    $ratingId = isset($matches[2]) ? $matches[2] : null;
+                    return [new RatingController(), 'showForm', $escalierId, $ratingId];
                 }
                 switch ($uri) {
                     case '/':
@@ -48,8 +50,6 @@ class Router
                         return [new StairsController(), 'showForm'];
                     case '/stairs/list':
                         return [new StairsController(), 'showList'];
-                    case '/accidents/form':
-                        return [new AccidentsController(), 'showForm'];
                     case '/statistics':
                         return [new StatisticsController(), 'showStatistics'];
                     default:

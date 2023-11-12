@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stairs extends Model
 {
-    protected $table = 'stairs';
+    protected $table = 'Stairs';
     protected $primaryKey = 'id';
     public $timestamps = false;
 
     protected $fillable = [
-        'id',
         'stairs_name',
         'num_steps',
         'is_indoor',
@@ -25,9 +24,14 @@ class Stairs extends Model
         return $this->stairs_name ?? '';
     }
 
-    public function accidents()
+    public static function getAll()
     {
-        return $this->hasMany(Accident::class, 'stairs_id');
+        return Stairs::with('rating')->get();
+    }
+
+    public function ratings()
+    {
+        return $this->hasOne(Rating::class, 'stairs_id');
     }
 
     public static function createStairs(array $data)

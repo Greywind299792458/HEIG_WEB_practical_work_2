@@ -1,33 +1,26 @@
 <?php
 
-class StairsController
+class RatingController
 {
-    public function showForm(int $id = null)
+    public function showForm(int $stairsId, $id = null)
     {
         $success = isset($_GET['success']) ? $_GET['success'] : null;
         $error = isset($_GET['error']) ? $_GET['error'] : null;
+        $stairs = Stairs::getStairsById($stairsId);
         try {
             if ($id != null) {
                 $data = Stairs::getStairsById($id);
             }
         } catch (Exception $e) {
-            header("Location: /stairs/form?success=false&error=" . urlencode($e->getMessage()));
+            header("Location: /rating/form?success=false&error=" . urlencode($e->getMessage()));
             exit();
         }
-        include 'views/stairs_form_view.php';
-    }
-
-    public function showList()
-    {
-        $data = Stairs::getAll();
-        $deleteSuccess = isset($_GET['success']) ? $_GET['success'] : null;
-        $error = isset($_GET['error']) ? $_GET['error'] : null;
-        include 'views/stairs_list_view.php';
+        include 'views/rating_form_view.php';
     }
 
     public function processForm()
     {
-        $id = isset($_POST['id']) ? $_POST['id'] : null;
+        /*  $id = isset($_POST['id']) ? $_POST['id'] : null;
         try {
             $this->validateData($_POST);
             Stairs::createStairs($_POST);
@@ -38,12 +31,12 @@ class StairsController
             $redirectUrl = "/stairs/form" . ($id ? "/$id?" : "?") . "success=false&error=" . urlencode($e->getMessage());
             header("Location: $redirectUrl");
             exit();
-        }
+        } */
     }
 
     private function validateData(array $formData)
     {
-        if (empty($formData['stairsName']) || empty($formData['numSteps']) || empty($formData['isIndoor']) || empty($formData['startingLevel'])) {
+        /*   if (empty($formData['stairsName']) || empty($formData['numSteps']) || empty($formData['isIndoor']) || empty($formData['startingLevel'])) {
             throw new Exception('Certaines Informations sont manquantes.');
         }
         if ($formData['numSteps'] <= 1) {
@@ -54,12 +47,12 @@ class StairsController
         }
         if ($formData['startingLevel'] == "") {
             throw new Exception('Le nom de l\'étage de départ ne peut pas être vide.');
-        }
+        } */
     }
 
     public function deleteItem(int $id)
     {
-        try {
+        /*  try {
             Stairs::deleteStairs($id);
             $response = [
                 'success' => true
@@ -76,6 +69,6 @@ class StairsController
             http_response_code(500);
             echo json_encode($response);
             exit();
-        }
+        } */
     }
 }

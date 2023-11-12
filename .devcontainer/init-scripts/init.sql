@@ -1,26 +1,23 @@
 /* ----------------------------------------------------------------------- */
-drop table if exists stairs;
-create table stairs(
-	id smallint auto_increment, 
-	stairs_name varchar(255) not null, 
-	num_steps int not null,
-	is_indoor boolean not null,
-	building_name varchar(255),
-	starting_level varchar(255) not null,
-	special_feature varchar(255),
-	primary key(id)
+DROP TABLE IF EXISTS stairs;
+CREATE TABLE Stairs(
+	id INT AUTO_INCREMENT, 
+	stairs_name VARCHAR(255) NOT NULL, 
+	num_steps INT NOT NULL,
+	is_indoor boolean NOT NULL,
+	building_name VARCHAR(255),
+	starting_level VARCHAR(255) NOT NULL,
+	special_feature TEXT,
+	PRIMARY KEY (id)
 );
-drop table if exists accident;
-create table accident(
-	id smallint auto_increment,
-	event_description varchar(255),
-	destroyed_ego boolean not null,
-	spilled_drink boolean not null,
-	event_date datetime not null,
-	noclip boolean not null,
-	stairs_id smallint not null,
-	primary key(id),
-	constraint fk_stairs
-    foreign key(stairs_id) 
-        references stairs(id)
+
+DROP TABLE IF EXISTS Ratings;
+CREATE TABLE Ratings (
+    id INT AUTO_INCREMENT,
+    stairs_id INT NOT NULL UNIQUE,
+    rating enum('1', '2', '3', '4', '5') NOT NULL,
+    review TEXT,
+    is_favorite BOOLEAN DEFAULT false NOT NULL,
+	PRIMARY KEY (id),
+    FOREIGN KEY (stairs_id) REFERENCES Stairs(id)
 );
