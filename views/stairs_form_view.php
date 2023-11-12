@@ -37,7 +37,7 @@
                 </div>
                 <div>
                     <label for="is-indoor"><i class="bi bi-house"></i> Escalier intérieur</label>
-                    <input type="checkbox" id="is-indoor" name="isIndoor" checked="<?php echo isset($data['is_indoor']) && $data['is_indoor'] ? "true" : "false"; ?>">
+                    <input type="checkbox" id="is-indoor" name="isIndoor" <?php echo isset($data['is_indoor']) && $data['is_indoor'] ? 'checked' : ''; ?>>
                 </div>
                 <div>
                     <label for="building-name"> <i class="bi bi-building"></i>Bâtiment</label>

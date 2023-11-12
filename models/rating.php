@@ -16,54 +16,44 @@ class Rating extends Model
         'is_favorite',
     ];
 
-    public static function createRating(array $data)
+    public static function createItem(array $data)
     {
-        $stairs = Stairs::find($data['stairs_id']);
-        if (!$stairs) {
-            throw new Exception('Aucun escalier associé avec cet id n\'a été trouvé.');
-        }
-        if (empty($data['id'])) {
+        if (!isset($data['ratingId']) || !Rating::find($data['ratingId'])) {
             return self::create([
-                'stairs_id' => $data['stairs_id'],
+                'stairs_id' => $data['stairsId'],
                 'rating' => $data['rating'],
                 'review' => $data['review'] ?? null,
-                'is_favorite' => $data['is_favorite'] ? 1 : 0
+                'is_favorite' => isset($data['isFavorite']) ? 1 : 0,
             ]);
         } else {
             Rating::updateRating($data);
         }
     }
 
-    public static function updateRating(array $data)
+    public static function updateItem(array $data)
     {
-        $rating = Rating::find($data['id']);
-        if (!$rating) {
-            throw new Exception('Aucun enregistrement associé avec cet id n\'a été trouvé.');
-        }
-        $rating->stairs_id = $data['stairs_id'];
+        $rating = Rating::getById($data['ratingId']);
+        $rating->stairs_id = $data['stairsId'];
         $rating->rating = $data['rating'];
         $rating->review = $data['review'] ?? null;
-        $rating->is_favorite = $data['is_favorite'] ? 1 : 0;
+        $rating->is_favorite = isset($data['isFavorite']) ? 1 : 0;
         $rating->save();
     }
 
-    public static function getRatingById(int $id)
+    public static function getById(int $id)
     {
-        $stairs = Stairs::find($id);
-        if (!$stairs) {
+        $rating = Rating::find($id);
+        if (!$rating) {
             throw new Exception('Aucun enregistrement associé avec cet id n\'a été trouvé.');
         }
-        return $stairs;
+        return $rating;
     }
 
-    public static function deleteStairs(int $id)
+    public static function deleteItem(int $id)
     {
-        $stairs = Stairs::find($id);
-        if (!$stairs) {
-            throw new Exception('Aucun enregistrement associé avec cet id n\'a été trouvé.');
-        }
-        if (!$stairs->delete()) {
-            throw new Exception('La suppression de l\'escalier a échoué.');
+        $rating = Rating::getById($id);
+        if (!$rating->delete()) {
+            throw new Exception('La suppression de l\'avis a échoué.');
         }
     }
 }

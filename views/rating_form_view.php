@@ -25,17 +25,17 @@
             <h1>Ajouter un avis</h1>
             <form action="/rating/form" method="post">
                 <?php if (isset($data['id'])) : ?>
-                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                    <input type="hidden" name="ratingId" value="<?php echo $data['id']; ?>">
                 <?php endif; ?>
                 <?php if (isset($stairs['id'])) : ?>
-                    <input type="hidden" name="id" value="<?php echo $stairs['id']; ?>">
+                    <input type="hidden" name="stairsId" value="<?php echo $stairs['id']; ?>">
                 <?php endif; ?>
                 <div>
-                    <span for="stairs">Escalier: <?php echo $stairs['name']; ?></span>
+                    <span for="stairs">Escalier: <?php echo $stairs['stairs_name']; ?></span>
                 </div>
                 <div>
-                    <label for="rating">Rating:</label>
-                    <select name="rating" id="rating">
+                    <label for="rating"><i class="bi bi-award-fill"></i></i>Avis</label>
+                    <select name="rating" id="rating" required>
                         <option value="1" <?php echo (isset($data['rating']) && $data['rating'] === '1') ? 'selected' : ''; ?>>1</option>
                         <option value="2" <?php echo (isset($data['rating']) && $data['rating'] === '2') ? 'selected' : ''; ?>>2</option>
                         <option value="3" <?php echo (isset($data['rating']) && $data['rating'] === '3') ? 'selected' : ''; ?>>3</option>
@@ -44,12 +44,12 @@
                     </select>
                 </div>
                 <div>
-                    <label for="review"> <i class="bi bi-building"></i>Avis</label>
-                    <textarea id="review" name="review" value="<?php echo isset($data['special_feature']) ? $data['special_feature'] : ''; ?>"></textarea>
+                    <label for="review"><i class="bi bi-chat-left-text"></i>Avis</label>
+                    <textarea id="review" name="review" rows="8" value="<?php echo isset($data['review']) ? $data['review'] : ''; ?>"></textarea>
                 </div>
                 <div>
-                    <label for="is-favorite"><i class="bi bi-house"></i>Favori</label>
-                    <input type="checkbox" id="is-favorite" name="isFavorite" checked="<?php echo isset($data['is_favorite']) && $data['is_favorite'] ? "true" : "false"; ?>">
+                    <label for="is-favorite"><i class="bi bi-bookmark-star"></i>Favori</label>
+                    <input type="checkbox" id="is-favorite" name="isFavorite" <?php echo isset($data['is_favorite']) && $data['is_favorite'] ? 'checked' : ''; ?>>
                 </div>
                 <input class="btn" id="btn-send" type="submit" value="Submit">
             </form>

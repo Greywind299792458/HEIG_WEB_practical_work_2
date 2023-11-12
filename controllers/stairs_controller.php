@@ -8,7 +8,7 @@ class StairsController
         $error = isset($_GET['error']) ? $_GET['error'] : null;
         try {
             if ($id != null) {
-                $data = Stairs::getStairsById($id);
+                $data = Stairs::getById($id);
             }
         } catch (Exception $e) {
             header("Location: /stairs/form?success=false&error=" . urlencode($e->getMessage()));
@@ -30,7 +30,7 @@ class StairsController
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         try {
             $this->validateData($_POST);
-            Stairs::createStairs($_POST);
+            Stairs::createItem($_POST);
             $redirectUrl = "/stairs/form" . ($id ? "/$id?" : "?") . "success=true";
             header("Location: $redirectUrl");
             exit();
@@ -43,7 +43,7 @@ class StairsController
 
     private function validateData(array $formData)
     {
-        if (empty($formData['stairsName']) || empty($formData['numSteps']) || empty($formData['isIndoor']) || empty($formData['startingLevel'])) {
+        if (empty($formData['stairsName']) || empty($formData['numSteps']) || empty($formData['startingLevel'])) {
             throw new Exception('Certaines Informations sont manquantes.');
         }
         if ($formData['numSteps'] <= 1) {
@@ -60,7 +60,7 @@ class StairsController
     public function deleteItem(int $id)
     {
         try {
-            Stairs::deleteStairs($id);
+            Stairs::deleteById($id);
             $response = [
                 'success' => true
             ];

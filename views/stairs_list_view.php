@@ -33,8 +33,9 @@
                             <th>Bâtiment</th>
                             <th>Etage de départ</th>
                             <th>Particularité</th>
-                            <th></th>
-                            <th></th>
+                            <th colspan="4">Avis</th>
+                            <th class="no-border"></th>
+                            <th class="no-border"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,15 +47,22 @@
                                 <td><?= $row['building_name'] ?></td>
                                 <td><?= $row['starting_level'] ?></td>
                                 <td><?= $row['special_feature'] ?></td>
-                                <td>
-                                    <?php if ($row['rating_id'] === null) { ?>
-                                        <button onclick="addRating(<?php echo $row['id']; ?>)">Ajouter Rating</button>
-                                    <?php } else { ?>
-                                        <button onclick="editRating(<?php echo $row['id']; ?>, <?php echo $row['rating']['id']; ?>)">Modifier Rating</button>
-                                    <?php } ?>
-                                </td>
-                                <td onclick="editStairs(<?php echo $row['id']; ?>)"><i class="bi bi-pencil-fill hand"></i></td>
-                                <td onclick="deleteStairs(<?php echo $row['id']; ?>)"><i class="bi bi-trash-fill hand"></i></td>
+                                <?php if ($row['ratings'] === null) { ?>
+                                    <td colspan="4"><button onclick="addRating(<?php echo $row['id']; ?>)">Ajouter un avis</button></td>
+                                <?php } else { ?>
+                                    <td class="no-border">
+                                        <?php
+                                        if (isset($row['ratings']['is_favorite']) && $row['ratings']['is_favorite']) {
+                                            echo 'Favori <3 !';
+                                        }
+                                        ?>
+                                    </td>
+                                    <td class="no-border"><?php echo $row['ratings']['rating']; ?></td>
+                                    <td class="no-border"><button onclick="editRating(<?php echo $row['id']; ?>, <?php echo $row['ratings']['id']; ?>)">Modifier</button></td>
+                                    <td><button onclick="deleteRating(<?php echo $row['ratings']['id']; ?>)">Supprimer</button></td>
+                                <?php } ?>
+                                <td class="no-border" onclick="editStairs(<?php echo $row['id']; ?>)"><i class="bi bi-pencil-fill hand"></i></td>
+                                <td class="no-border" onclick="deleteStairs(<?php echo $row['id']; ?>)"><i class="bi bi-trash-fill hand"></i></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -64,7 +72,7 @@
         <section id="info-section" class="center centered-info">
             <?php
             if (isset($deleteSuccess) && $deleteSuccess === "true") {
-                echo '<p style="color: green;">L\'escalier a été supprimé avec succès!</p>';
+                echo '<p style="color: green;">L\'opération a été effectuée avec succès!</p>';
             }
             if (isset($error) && $error !== "") {
                 echo '<p style="color: red;">' . $error . '</p>';
@@ -91,21 +99,32 @@
         window.location.href = `/rating/form/${stairsId}/${ratingId}`
     }
 
+    function deleteRating(id) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', `/rating/${id}`, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        sendDeleteRequest(xhr, 'Êtes-vous sûr de vouloir supprimer cet avis?')
+    }
+
     function deleteStairs(id) {
-        if (confirm('Êtes-vous sûr de vouloir supprimer cet escalier?')) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('DELETE', '/stairs/' + id, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', `/stairs/${id}`, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        sendDeleteRequest(xhr, 'Êtes-vous sûr de vouloir supprimer cet escalier?')
+    }
+
+    function sendDeleteRequest(xhr, message) {
+        if (confirm(message)) {
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     var result = JSON.parse(xhr.responseText);
                     if (result.success) {
                         window.location.href = '/stairs/list?deleteSuccess=true';
                     } else {
-                        window.location.href = '/stairs/list?deleteSuccess=false&error=' + encodeURIComponent(result.message);
+                        window.location.href = '/stairs/list?success=false&error=' + encodeURIComponent(result.message);
                     }
                 } else {
-                    window.location.href = '/stairs/list?deleteSuccess=false&error=' + encodeURIComponent(xhr.statusText);
+                    window.location.href = '/stairs/list?success=false&error=' + encodeURIComponent(xhr.statusText);
                 }
             };
             xhr.onerror = function() {

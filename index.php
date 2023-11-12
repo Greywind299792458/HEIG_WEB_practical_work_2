@@ -30,6 +30,8 @@ class Router
                 switch ($uri) {
                     case '/stairs/form':
                         return [new StairsController(), 'processForm'];
+                    case '/rating/form':
+                        return [new RatingController(), 'processForm'];
                     default:
                         return [null, 'notFound'];
                 }
@@ -62,6 +64,12 @@ class Router
                     case 'stairs':
                         if (isset($urlSegments[2])) {
                             return [new StairsController(), 'deleteItem', $urlSegments[2]];
+                        } else {
+                            return [null, ''];
+                        }
+                    case 'rating':
+                        if (isset($urlSegments[2])) {
+                            return [new RatingController(), 'deleteItem', $urlSegments[2]];
                         } else {
                             return [null, ''];
                         }
