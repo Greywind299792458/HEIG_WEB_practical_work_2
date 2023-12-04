@@ -50,7 +50,6 @@ input:not([type="checkbox"]):not([type="submit"]),
 textarea,
 select {
     width: 200px !important;
-    padding: 5px;
 }
 
 input[type="checkbox"] {

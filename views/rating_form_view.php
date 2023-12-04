@@ -34,20 +34,20 @@
                                     $data['rating'] === '1') ? 'selected' : ''; ?>>1
                             </option>
                             <option value="2"
-                            <?php echo (isset($data['rating']) &&
-                            $data['rating'] === '2') ? 'selected' : ''; ?>>2
+                                <?php echo (isset($data['rating']) &&
+                                $data['rating'] === '2') ? 'selected' : ''; ?>>2
                             </option>
                             <option value="3"
-                            <?php echo (isset($data['rating']) &&
-                            $data['rating'] === '3') ? 'selected' : ''; ?>>3
+                                <?php echo (isset($data['rating']) &&
+                                $data['rating'] === '3') ? 'selected' : ''; ?>>3
                             </option>
                             <option value="4"
-                            <?php echo (isset($data['rating']) &&
-                            $data['rating'] === '4') ? 'selected' : ''; ?>>4
+                                <?php echo (isset($data['rating']) &&
+                                $data['rating'] === '4') ? 'selected' : ''; ?>>4
                             </option>
                             <option value="5"
-                            <?php echo (isset($data['rating']) &&
-                            $data['rating'] === '5') ? 'selected' : ''; ?>>5
+                                <?php echo (isset($data['rating']) &&
+                                $data['rating'] === '5') ? 'selected' : ''; ?>>5
                             </option>
                         </select>
                     </div>
@@ -56,7 +56,7 @@
                             <i class="bi bi-chat-left-text"></i>Avis
                         </label>
                         <textarea id="review" name="review" rows="8">
-                            <?php echo isset($data['review']) ? $data['review'] : ''; ?>
+                            <?php echo isset($data['review']) ? trim($data['review']) : ''; ?>
                         </textarea>
                     </div>
                     <div>

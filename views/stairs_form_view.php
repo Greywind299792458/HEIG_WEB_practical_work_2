@@ -63,7 +63,7 @@
                         </label>
                         <textarea id="special-feature" name="specialFeature">
                             <?php echo isset($data['special_feature']) ? 
-                                $data['special_feature'] : ''; ?>
+                                trim($data['special_feature']) : ''; ?>
                         </textarea>
                     </div>
                     <input class="btn" id="btn-send" type="submit" value="Submit">
