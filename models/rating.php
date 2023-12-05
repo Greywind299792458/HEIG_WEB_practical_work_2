@@ -23,10 +23,9 @@ class Rating extends Model
         }
         $rating = Rating::where('stairs_id', $data['stairsId'])->first();
         if ($rating == null) {
+            // a new entry is added in the database
             if (isset($data['ratingId'])) {
-                throw new Exception(
-                    'l\'escalier associé à l\'avis reçu n\'a pas été trouvé.'
-                );
+                throw new Exception('l\'escalier associé à l\'avis reçu n\'a pas été trouvé.');
             } else {
                 return self::create(
                     [
@@ -38,6 +37,7 @@ class Rating extends Model
                 );
             }
         } else {
+            // here we update an existing entity
             $rating->stairs_id = $data['stairsId'];
             $rating->rating = $data['rating'];
             $rating->review = $data['review'] ?? null;
@@ -48,17 +48,17 @@ class Rating extends Model
 
     public static function getById(int $id)
     {
+         // fetch a specific entity by its id (or throw error if not found)
         $rating = Rating::find($id);
         if (!$rating) {
-            throw new Exception(
-                'Aucun enregistrement associé avec cet id n\'a été trouvé.'
-            );
+            throw new Exception('Aucun enregistrement associé avec cet id n\'a été trouvé.');
         }
         return $rating;
     }
 
     public static function deleteItem(int $id)
     {
+        // delete a specific entity by its id
         $rating = Rating::getById($id);
         if (!$rating->delete()) {
             throw new Exception('La suppression de l\'avis a échoué.');

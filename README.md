@@ -50,6 +50,10 @@ Les dépendances seront automatiquement installées via Composer et l'applicatio
 
 La base de données est également disponible sur le port 3306. Les informations de connexion sont dans le fichier init.php.
 
+2 entités sont présentes dans la base de données: une représente un escalier (**Stairs**) et une représentant un avis (**Ratings**). Chaque entité **Stairs** peut être reliée à un ou aucune entité **Ratings**.
+
+![database schema!](img/db.png)
+
 ## Fonctionnalités clés
 
 - Vous avez croisé un escalier ? Saisissez le dans l'application ! Un formulaire détaillé vous permettra de le répertorier avec précision !

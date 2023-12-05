@@ -27,17 +27,20 @@ class Stairs extends Model
 
     public static function getAll()
     {
+        // fetches everything from the table with their associated ratings
         return self::with('ratings')->get();
     }
 
     public function ratings()
     {
+        // indicates the relation between stairs and rating
         return $this->hasOne(Rating::class, 'stairs_id');
     }
 
     public static function createItem(array $data)
     {
         if (!isset($data['id'])) {
+            // a new entry is added in the database
             return self::create(
                 [
                     'stairs_name' => $data['stairsName'],
@@ -55,6 +58,7 @@ class Stairs extends Model
 
     public static function updateItem(array $data)
     {
+        // here we update an existing entity
         $stairs = Stairs::getById($data['id']);
         $stairs->stairs_name = $data['stairsName'];
         $stairs->num_steps = $data['numSteps'];
@@ -67,6 +71,7 @@ class Stairs extends Model
 
     public static function getById(int $id)
     {
+        // fetch a specific entity by its id (or throw error if not found)
         $stairs = Stairs::find($id);
         if (!$stairs) {
             throw new Exception('Aucun enregistrement associé avec cet id n\'a été trouvé.');
@@ -76,6 +81,7 @@ class Stairs extends Model
 
     public static function deleteById(int $id)
     {
+        // delete a specific entity by its id (and their associated rating if any)
         $stairs = Stairs::getById($id);
         $rating = $stairs->ratings;
         if ($rating) {

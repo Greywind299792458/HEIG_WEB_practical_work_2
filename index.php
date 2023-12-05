@@ -15,8 +15,10 @@ list($controller, $action, $id, $additionalId) = array_merge(
 if ($action == '') {
     echo "Method not allowed";
 } elseif ($action == 'notFound') {
+    // this route does not exist
     include 'views/404_view.php';
 } else {
+    // here we call the controller's method
     if ($id != null) {
         if ($additionalId != null) {
             $controller->$action($id, $additionalId);
@@ -24,6 +26,7 @@ if ($action == '') {
             $controller->$action($id);
         }
     } else {
+
         $controller->$action();
     }
 }
@@ -32,8 +35,11 @@ class Router
 {
     public static function handleRequest($method, $uri)
     {
+        // here we decide which controller will handle the request and which method
+        // to call within the controller based on the method and the url content
         switch ($method) {
             case 'POST':
+                // Post request from the form (rating form or stairs form)
                 switch ($uri) {
                     case '/stairs/form':
                         return [new StairsController(), 'processForm'];

@@ -5,6 +5,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 $capsule = new Capsule;
 
+// database connection information
 $capsule->addConnection([
     'driver'    => 'mysql',
     'host'      => 'localhost:3306',

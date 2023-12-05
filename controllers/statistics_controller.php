@@ -6,6 +6,7 @@ class StatisticsController
 {
     public function showStatistics()
     {
+        // fetches some data to include in the statistics page
         $oddStepsCount  = Stairs::whereRaw('num_steps % 2 <> 0')->count();
         $evenStepsCount = Stairs::whereRaw('num_steps % 2 = 0')->count();
         $sortedStairs   = Stairs::orderBy('num_steps')->get();

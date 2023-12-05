@@ -1,4 +1,3 @@
-/* ----------------------------------------------------------------------- */
 DROP TABLE IF EXISTS stairs;
 CREATE TABLE Stairs(
 	id INT AUTO_INCREMENT, 

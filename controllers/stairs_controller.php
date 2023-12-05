@@ -4,6 +4,7 @@ class StairsController
 {
     public function showForm(int $id = null)
     {
+        // display form with eventually a rating object to edit + feeedbacks
         $success = isset($_GET['success']) ? $_GET['success'] : null;
         $error   = isset($_GET['error']) ? $_GET['error'] : null;
         try {
@@ -22,6 +23,7 @@ class StairsController
 
     public function showList()
     {
+        // gather the list of all stairs + feeedbacks
         $data = Stairs::getAll();
         $success = isset($_GET['success']) ? $_GET['success'] : null;
         $error = isset($_GET['error']) ? $_GET['error'] : null;
@@ -30,14 +32,19 @@ class StairsController
 
     public function processForm()
     {
+        // receives the POST request payload and extract the id
         $id = isset($_POST['id']) ? $_POST['id'] : null;
         try {
+            // validates the payload content
             $this->_validateData($_POST);
+            // creates or updates an item in the db
             Stairs::createItem($_POST);
+            // manages redirection
             $redirectUrl = "/stairs/form" . ($id ? "/$id?" : "?") . "success=true";
             header("Location: $redirectUrl");
             exit();
         } catch (Exception $e) {
+            // shows feedback to user in case of error
             $redirectUrl = "/stairs/form" . ($id ? "/$id?" : "?") .
                 "success=false&error=" . urlencode($e->getMessage());
             header("Location: $redirectUrl");
@@ -71,6 +78,7 @@ class StairsController
 
     public function deleteItem(int $id)
     {
+        // deletes the item matching this id in the db
         try {
             Stairs::deleteById($id);
             $response = [
@@ -80,6 +88,7 @@ class StairsController
             echo json_encode($response);
             exit();
         } catch (Exception $e) {
+            // shows feedback in case of error
             $response = [
                 'success' => false,
                 'message' => 'Erreur lors de la suppression de l\'escalier: ' .
