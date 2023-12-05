@@ -32,8 +32,7 @@ class RatingController
             header("Location: $redirectUrl");
             exit();
         } catch (Exception $e) {
-            $redirectUrl = "/rating/form/$stairsId" .
-                ($ratingId ? "/$ratingId?" : "?") .
+            $redirectUrl = "/rating/form/$stairsId" . ($ratingId ? "/$ratingId?" : "?") .
                 "success=false&error=" . urlencode($e->getMessage());
             header("Location: $redirectUrl");
             exit();
@@ -44,6 +43,9 @@ class RatingController
     {
         if (empty($formData['stairsId']) || empty($formData['rating'])) {
             throw new Exception('Certaines Informations sont manquantes.');
+        }
+        if ($formData['rating'] > 5 || $formData['rating'] < 1) {
+            throw new Exception('La valeur de la note est invalide (1 < x < 5).');
         }
     }
 
@@ -60,8 +62,8 @@ class RatingController
         } catch (Exception $e) {
             $response = [
                 'success' => false,
-                'message' =>
-                'Erreur lors de la suppression de l\'avis: ' . $e->getMessage()
+                'message' => 'Erreur lors de la suppression de l\'avis: ' . 
+                    $e->getMessage()
             ];
             header('Content-Type: application/json');
             http_response_code(500);

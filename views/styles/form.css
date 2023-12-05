@@ -4,7 +4,7 @@ body {
     background-size: cover;
 }
 
-#form-section {
+.form-section {
     height: fit-content;
     width: 80vw;
     margin: 30px auto 30px auto;
@@ -39,17 +39,11 @@ label {
     gap: 10px;
     align-items: center;
     align-self: center;
+    width: 200px !important;
 }
 
 label i {
     align-self: flex-start;
-}
-
-label,
-input:not([type="checkbox"]):not([type="submit"]),
-textarea,
-select {
-    width: 200px !important;
 }
 
 input[type="checkbox"] {
@@ -67,7 +61,12 @@ form div {
 
 form input {
     height: 30px;
-    width: 30%;
+    width: 70%;
+}
+
+select {
+    width: 15%;
+    text-align: center;
 }
 
 form #btn-send {

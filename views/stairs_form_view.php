@@ -8,7 +8,7 @@
     <body>
         <?php include 'fragments/header.php';?>
         <main>
-            <section id="form-section">
+            <section class="form-section">
                 <h1>Ajouter un escalier</h1>
                 <form action="/stairs/form" method="post">
                     <?php if (isset($data['id'])) : ?>
@@ -61,10 +61,9 @@
                         <label for="special-feature">
                             <i class="bi bi-chat-left-dots"></i>Particularité
                         </label>
-                        <textarea id="special-feature" name="specialFeature">
-                            <?php echo isset($data['special_feature']) ? 
-                                trim($data['special_feature']) : ''; ?>
-                        </textarea>
+                        <input type="text" id="special-feature" name="specialFeature larger-input"
+                            value="<?php echo isset($data['special_feature']) ? 
+                            $data['special_feature'] : ''; ?>">
                     </div>
                     <input class="btn" id="btn-send" type="submit" value="Submit">
                 </form>

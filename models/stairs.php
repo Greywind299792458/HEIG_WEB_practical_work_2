@@ -69,9 +69,7 @@ class Stairs extends Model
     {
         $stairs = Stairs::find($id);
         if (!$stairs) {
-            throw new Exception(
-                'Aucun enregistrement associé avec cet id n\'a été trouvé.'
-            );
+            throw new Exception('Aucun enregistrement associé avec cet id n\'a été trouvé.');
         }
         return $stairs;
     }

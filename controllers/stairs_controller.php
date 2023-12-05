@@ -5,7 +5,7 @@ class StairsController
     public function showForm(int $id = null)
     {
         $success = isset($_GET['success']) ? $_GET['success'] : null;
-        $error = isset($_GET['error']) ? $_GET['error'] : null;
+        $error   = isset($_GET['error']) ? $_GET['error'] : null;
         try {
             if ($id != null) {
                 $data = Stairs::getById($id);
@@ -38,8 +38,7 @@ class StairsController
             header("Location: $redirectUrl");
             exit();
         } catch (Exception $e) {
-            $redirectUrl = "/stairs/form" .
-                ($id ? "/$id?" : "?") .
+            $redirectUrl = "/stairs/form" . ($id ? "/$id?" : "?") .
                 "success=false&error=" . urlencode($e->getMessage());
             header("Location: $redirectUrl");
             exit();

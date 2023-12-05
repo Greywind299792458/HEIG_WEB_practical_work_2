@@ -8,7 +8,7 @@
     <body>
         <?php include 'fragments/header.php';?>
         <main>
-            <section id="form-section">
+            <section class="form-section">
                 <h1>
                     <?php echo isset($data['id']) ? 'Modifier' : 'Ajouter'; ?> un avis
                 </h1>
@@ -55,9 +55,9 @@
                         <label for="review">
                             <i class="bi bi-chat-left-text"></i>Avis
                         </label>
-                        <textarea id="review" name="review" rows="8">
-                            <?php echo isset($data['review']) ? trim($data['review']) : ''; ?>
-                        </textarea>
+                        <input type="text"  id="review" name="review"
+                            value="<?php echo isset($data['review']) ? 
+                            $data['review'] : ''; ?>">
                     </div>
                     <div>
                         <label for="is-favorite">
