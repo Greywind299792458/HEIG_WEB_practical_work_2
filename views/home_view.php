@@ -10,7 +10,7 @@
             <section class="center">
                 <img height="200" src="views/assets/app_logo.png">
                 <h1>Vous comptez les marches quand vous empruntez un escalier ?</h1>
-                <h2>Vous détestez les escaliers avec un nombre de marches impaire ?</h2>
+                <h2>Vous détestez les escaliers avec un nombre impair de marches ?</h2>
                 <h3>Alors vous êtes au bon endroit !</h3>
 
                 <h4>Cette application révolutionnaire a pour but d'établir un recensement des escaliers afin d'étudier
